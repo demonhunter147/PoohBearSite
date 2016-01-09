@@ -1,0 +1,39 @@
+﻿#cover-div {
+    position:absolute;
+    width:100%;
+    height:100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index:998;
+}
+
+#slider-overlay{
+    width: 40%;
+    height: 60%;
+    margin: 3em 30% 0; 
+    text-align:center;
+    position: absolute;
+    background-image: url('http://localhost:57642/Content/Images/Pooh-Bear-Circle.png');
+    background-position:center;
+    background-repeat:no-repeat;
+    z-index:999;
+}
+
+.carousel-control, .carousel-indicators{
+    z-index:999;
+}
+
+#mycarousel {
+    margin-top: 3.67em;
+}
+
+.block{
+    width:100%;
+}
+
+/*full width container*/
+@media (max-width: 767px) {
+    .block {
+        margin-left: -20px;
+        margin-right: -20px;
+    }
+}
