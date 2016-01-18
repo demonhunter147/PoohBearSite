@@ -11,6 +11,71 @@
 
 <script>
 
+    var myVar;
+
+    function returnToContact() {
+        $('#bs-example-navbar-collapse-1 > ul > li:nth-child(3) > a')[0].click();
+    }
+
+    function setFailedTime() {
+        myVar = setTimeout(failedHidden, 10000);
+    }
+
+    function setSuccessfulTime() {
+        myVar = setTimeout(successfulHidden, 10000);
+    }
+
+    function successfulHidden() {
+        $("#Successful").addClass('hidden');
+    }
+
+
+    function successfulSend() {
+        $("#Successful").removeClass('hidden');
+        setSuccessfulTime();
+    }
+
+    function failedSend() {
+        $('#Failed').removeClass('hidden');
+        setFailedTime();
+
+    }
+
+    function failedHidden() {
+        $("#Failed").addClass('hidden');
+    }
+
+     @if (ViewBag.Status == "ValidationError")
+     {
+         <text>
+            returnToContact();
+         </text>
+     }
+
+    @if (ViewBag.Status == "SendSuccess")
+    {
+        <text>
+    returnToContact();
+
+    $(document).ready(function (){
+        successfulSend();
+    })
+        </text>
+    }
+
+    @if (ViewBag.Status == "SendFailure")
+        {
+            <text>
+    returnToContact();
+
+    $(document).ready(function (){
+        failedSend();
+    })
+            </text>
+        }
+
+
+
     function slideDownAgain(){
         $("#cover-div").stop().fadeIn(1500)
     }
@@ -51,7 +116,7 @@
             $("#cover-div").fadeOut(1000);
         });
     })
-    
+
 
     $('body').scrollspy({ target: '' })
 
@@ -207,7 +272,11 @@
     <div class="row" id="Contact">
         <li role="separator" class="divider"></li>
         <div class="bg-info col-lg-5 col-lg-offset-4">
-            <h2> <b>Contact Us </h2>
+            <h2> <b>Contact Us</b> </h2>
+
+            <h3 id="Successful" class="hidden">Your message sent successfully! We will be in contact shortly.</h3>
+            <h3 id="Failed" class="hidden">An Error Occured while trying to send your message. Please try again.</h3>
+
 
                 @using (Html.BeginForm())
 

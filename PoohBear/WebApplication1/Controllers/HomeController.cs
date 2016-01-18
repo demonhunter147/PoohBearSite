@@ -20,7 +20,11 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult Index(HomeModels c)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Status = "ValidationError";
+            }
+                if (ModelState.IsValid)
             {
                 try
                 {
@@ -32,27 +36,23 @@ namespace WebApplication1.Controllers
                     msg.Subject = "Contact Us";
                     msg.IsBodyHtml = false;
                     SmtpClient client = new SmtpClient();
-                    // We use gmail as our smtp client
-                    client.Host = "smtp.gmail.com";
-                    client.Port = 587;
-                    client.EnableSsl = true;
-                    client.DeliveryMethod = SmtpDeliveryMethod.Network;
-                    client.Credentials = new System.Net.NetworkCredential("poohbearandfriendz@gmail.com", "Believe123");
                     sb.Append("Name: " + c.Name);
                     sb.Append(Environment.NewLine);
-                    sb.Append("Phione Number: " + c.Phone);
+                    sb.Append("Phone Number: " + c.Phone);
                     sb.Append(Environment.NewLine);
                     sb.Append("Email: " + c.Email);
+                    sb.Append(Environment.NewLine);
                     sb.Append(Environment.NewLine);
                     sb.Append("Message: " + c.Message);
                     msg.Body = sb.ToString();
                     smtp.Send(msg);
                     msg.Dispose();
-                    return View("Success");
+                    ViewBag.Status = "SendSuccess";
+                    ModelState.Clear();
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    return View("Error");
+                    ViewBag.Status = "SendFailure";
                 }
             }
             return View();
