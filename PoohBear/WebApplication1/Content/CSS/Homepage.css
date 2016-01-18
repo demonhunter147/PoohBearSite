@@ -1,4 +1,8 @@
-﻿#cover-div {
+﻿body{
+    position:relative;
+}
+
+#cover-div {
     position:absolute;
     width:100%;
     height:100%;
@@ -36,4 +40,32 @@
         margin-left: -20px;
         margin-right: -20px;
     }
+}
+
+#About{
+    background-color:transparent;
+}
+
+#About > div >,h1, h2, #About > div > p{
+    color:#14f53f;
+    text-align:center
+       
+}
+
+#Gallery{
+    background-color:#7f7f7f;
+    text-align:center
+}
+
+.divider{
+    margin:2em;
+    color:transparent;
+    background-color:transparent;
+}
+
+#Contact{
+    background-color:#d9edf7;
+}
+#About > .divider{
+    margin:10em;
 }
